@@ -198,6 +198,96 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
   tr{break-inside:avoid}
 }
 @media (prefers-reduced-motion:no-preference){.step,.btn,.modnav button{transition:border-color .15s,background-color .15s}}
+/* ---- ranking & competition ---- */
+.rk{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:999px;font-family:var(--mono);font-size:12px;font-weight:600;background:var(--bg);color:var(--muted);margin-inline-end:8px;vertical-align:middle;border:1px solid var(--line)}
+.medal{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;font-family:var(--mono);font-size:13px;font-weight:700;color:#3b2a06;border:1px solid rgba(0,0,0,.12);flex:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.medal.m1{background:linear-gradient(145deg,#f3d27a,#c99a2e)}
+.medal.m2{background:linear-gradient(145deg,#eef0f2,#aab1b8);color:#2b3035}
+.medal.m3{background:linear-gradient(145deg,#e9b98d,#b0743f);color:#3a2210}
+.medal.mx{background:var(--bg);color:var(--muted);border-color:var(--line)}
+.compset{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px 18px;align-items:end}
+.compset label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted);min-width:0}
+.compset input[type=number],.compset input[type=text]{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-width:0}
+.compset select{width:100%}
+.mode{font-size:14px;border-radius:8px;padding:9px 12px;margin:0;background:var(--accent-soft)}
+.mode.cum{background:var(--warn-soft)}
+details.certset{border-top:1px solid var(--line);padding-top:12px}
+details.certset summary{cursor:pointer;font-family:var(--display);font-weight:500;font-size:15px}
+.certset .compset{margin-top:12px}
+.logoprev{display:flex;align-items:center;gap:10px}
+.logoprev img{height:44px;width:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:2px}
+.gcomp h3{font-size:15.5px;color:var(--ink);margin-top:4px}
+.ctop{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ccard{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ccard .chead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.ccard .chead span.avg{font-size:12.5px;color:var(--muted)}
+.wrow{display:flex;align-items:center;gap:10px;min-width:0}
+.wrow .wn{flex:1;min-width:0;font-weight:500;font-size:14px;line-height:1.35}
+.wrow .wr{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;direction:ltr;white-space:nowrap}
+.wrow .ws{font-size:12px;color:var(--muted);display:block;font-weight:400}
+.certbtn{font:inherit;font-size:12.5px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--accent);border-radius:7px;padding:3px 9px;cursor:pointer;white-space:nowrap}
+.certbtn:hover{border-color:var(--accent)}
+.grank{display:flex;flex-wrap:wrap;gap:10px}
+.grank div{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px}
+.grank b{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+/* ---- certificate preview overlay ---- */
+.overlay{position:fixed;inset:0;z-index:40;background:rgba(10,18,15,.72);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.ovbar{display:flex;gap:8px;justify-content:center;padding:12px max(16px,env(safe-area-inset-left,0px));flex-wrap:wrap}
+.ovbody{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:0 16px 24px}
+.certscale{transform-origin:top center;flex:none}
+/* ---- certificate (fixed print look, independent of theme) ---- */
+#certs{display:none}
+.cert{--cg:#14533f;--cgold:#b08a3e;--cink:#1f2a26;width:297mm;height:210mm;position:relative;background:#fff;color:var(--cink);overflow:hidden;font-family:var(--cb),"Amiri","Traditional Arabic","Times New Roman",serif;box-sizing:border-box;direction:rtl;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cert *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cert .pat{position:absolute;inset:0;opacity:.06;background-size:22mm 22mm}
+.cert .frame{position:absolute;inset:8mm;border:2mm solid var(--cg)}
+.cert .frame::after{content:"";position:absolute;inset:1.6mm;border:.5mm solid var(--cgold)}
+.cert .corner{position:absolute;width:20mm;height:20mm}
+.cert .corner.tr{top:4mm;right:4mm}.cert .corner.tl{top:4mm;left:4mm}.cert .corner.br{bottom:4mm;right:4mm}.cert .corner.bl{bottom:4mm;left:4mm}
+.cert .inner{position:absolute;inset:16mm 22mm 14mm;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cert .top{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:start;font-size:12.5pt;line-height:1.55;color:var(--cg)}
+.cert .top .r{text-align:right;font-weight:700}
+.cert .top .l{text-align:left;font-weight:700}
+.cert .top img{height:25mm;width:auto;max-width:45mm;object-fit:contain}
+.cert .title{font-family:var(--ct),"Amiri",serif;font-weight:700;font-size:44pt;line-height:1.15;color:var(--cg);margin:1mm 0 0}
+.cert .title-sub{font-size:13pt;color:var(--cgold);font-weight:700;letter-spacing:.5pt;margin-top:-1mm}
+.cert .lead{font-size:18pt;margin-top:7mm}
+.cert .name{font-family:var(--ct),"Amiri",serif;font-size:34pt;font-weight:700;color:var(--cink);margin:2mm 0 0;padding:0 10mm 1.5mm;border-bottom:.6mm solid var(--cgold);line-height:1.35;max-width:200mm}
+.cert .body{font-size:18.5pt;line-height:1.9;margin-top:6mm;max-width:245mm}
+.cert .body b{color:var(--cg)}
+.cert .pct{direction:ltr;unicode-bidi:isolate;font-weight:700;color:var(--cg)}
+.cert .wish{font-size:16pt;color:#4b5a54;margin-top:4mm}
+.cert .sigs{width:100%;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;align-items:end;justify-items:center;font-size:14pt;gap:6mm}
+.cert .sig{display:flex;flex-direction:column;align-items:center;gap:1mm;min-width:60mm}
+.cert .sig .t{font-weight:700;color:var(--cg)}
+.cert .sig .line{width:55mm;border-bottom:.3mm dotted #6b7a74;height:9mm}
+.cert .sig .n{min-height:6mm}
+.cert .date{margin-top:auto;font-size:12.5pt;color:#4b5a54;text-align:center;padding-bottom:3mm}
+.signers{display:flex;flex-direction:column;gap:8px;grid-column:1/-1}
+.signer{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.signer input{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-width:0;flex:1 1 180px}
+.signer .num{width:24px;height:24px;font-size:12px}
+.fontprev{grid-column:1/-1;border:1px dashed var(--line);border-radius:10px;padding:12px 16px;background:#fff;color:#1f2a26;text-align:center;display:flex;flex-direction:column;gap:2px}
+.fontprev .ft{font-size:30px;color:#14533f;line-height:1.3}
+.fontprev .fn{font-size:24px;line-height:1.4}
+.fontprev .fb{font-size:16px;color:#4b5a54}
+.cert .seal{position:absolute;top:44mm;left:30mm;width:34mm;height:34mm}
+.cert .seal .disc{position:absolute;inset:3mm;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#3b2a06;box-shadow:inset 0 0 0 .6mm rgba(255,255,255,.55),0 0 0 .6mm rgba(0,0,0,.08)}
+.cert .seal .disc small{font-size:9.5pt;font-weight:700;line-height:1;margin-bottom:1.6mm}
+.cert .seal .disc span{font-family:var(--ct),"Amiri",serif;font-size:19pt;font-weight:700;line-height:1.1}
+.cert .seal.g1 .disc{background:radial-gradient(circle at 35% 30%,#fbe7a6,#d7a93f 60%,#a87a1f)}
+.cert .seal.g2 .disc{background:radial-gradient(circle at 35% 30%,#ffffff,#c4cad0 60%,#8d959c);color:#24292d}
+.cert .seal.g3 .disc{background:radial-gradient(circle at 35% 30%,#f6d2ae,#c58650 60%,#8e5527);color:#2f1a08}
+.cert .seal.g0 .disc{background:radial-gradient(circle at 35% 30%,#e6f1ec,#7fb49d 60%,#14533f);color:#fff}
+.cert .seal svg{position:absolute;inset:0}
+@page cert{size:A4 landscape;margin:0}
+@media print{
+  body[data-print="certs"]{padding:0;background:#fff}
+  body[data-print="certs"] .wrap,body[data-print="certs"] .overlay,body[data-print="certs"] .toast{display:none!important}
+  body[data-print="certs"] #certs{display:block}
+  .cert{page:cert;break-after:page}
+  .cert:last-child{break-after:auto}
+}
 </style>
 </head>
 <body>
@@ -217,6 +307,7 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
     <button type="button" data-m="exc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>السلوك المتميز</button>
     <button type="button" data-m="plat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8"/><path d="M8.5 20h7M12 16.5V20M7.5 12.5l3-3 2.5 2 3.5-4"/></svg>المنصة</button>
     <button type="button" data-m="follow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.5" cy="8" r="3.5"/><path d="M3 20c.6-3.6 3.2-5.5 6.5-5.5 1.6 0 3 .4 4.1 1.2M15.5 15.5l2 2 4-4"/></svg>متابعة الطلاب<span class="cnt" id="followCnt" hidden></span></button>
+    <button type="button" data-m="comp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v4.5a5 5 0 0 1-10 0z"/><path d="M7 6H4.5a2.5 2.5 0 0 0 3 3.6M17 6h2.5a2.5 2.5 0 0 1-3 3.6M12 13.5V17M8.5 20h7M9.5 17h5"/></svg>المسابقة الشهرية</button>
   </nav>
 
   <section class="steps no-print" aria-label="رفع الملفات">
@@ -322,6 +413,7 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
       <div class="toolbar no-print">
         <div class="search"><input id="pQ" type="search" placeholder="ابحث بالاسم أو رقم الطالب" aria-label="بحث"></div>
         <label class="field" for="pF">عرض <select id="pF"></select></label>
+        <label class="field" for="pSort">الترتيب <select id="pSort"><option value="class">حسب الفصل</option><option value="rank">حسب نسبة الإنجاز</option></select></label>
       </div>
       <div class="finfo" id="pInfo"></div>
       <div class="tbox"><table class="stable" id="pSTable"><thead id="pSThead"></thead><tbody id="pSRows"></tbody></table></div>
@@ -379,6 +471,44 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
     </section>
   </div>
 
+
+  <!-- ============ المسابقة الشهرية ============ -->
+  <div class="mod" id="modComp" hidden>
+    <section class="panel" id="compEmpty" hidden><div class="empty"><b>ارفع تقرير المنصة</b>المسابقة تُحسب من تقارير المنصة. ارفع تقرير بداية الشهر ثم تقرير نهايته، أو تقريراً واحداً لترتيب تراكمي.</div></section>
+    <section class="panel no-print" id="compSet" hidden aria-labelledby="csTitle">
+      <div class="phead"><h2 id="csTitle">إعدادات المسابقة</h2><p>الترتيب يعتمد نسبة الإنجاز الدقيقة خلال الفترة.</p></div>
+      <div class="compset">
+        <label for="cMonth">الشهر<select id="cMonth"></select></label>
+        <label for="cBase">تقرير بداية الشهر<select id="cBase"></select></label>
+        <label for="cEnd">تقرير نهاية الشهر<select id="cEnd"></select></label>
+        <label for="cTop">عدد أوائل كل فصل<input type="number" id="cTop" min="1" max="20" step="1"></label>
+        <label for="cHonor">عدد لوحة الشرف لكل صف<input type="number" id="cHonor" min="1" max="30" step="1"></label>
+        <label for="cElig">شرط الأهلية<select id="cElig"><option value="half">مهامه نصف متوسط مهام فصله على الأقل</option><option value="fixed">عدد ثابت من المهام على الأقل</option><option value="none">بدون شرط</option></select></label>
+        <label for="cFixed" id="cFixedWrap">الحد الأدنى للمهام<input type="number" id="cFixed" min="1" max="999" step="1"></label>
+      </div>
+      <details class="certset" id="certSet">
+        <summary>إعدادات الشهادة</summary>
+        <div class="compset">
+          <label for="cLabel">الفترة كما تظهر في الشهادة<input type="text" id="cLabel" placeholder="مثل: شهر أكتوبر 2026م"></label>
+          <label for="cSchool">اسم المدرسة<input type="text" id="cSchool"></label>
+          <label for="cDept">السطر الثالث في الترويسة (اختياري)<input type="text" id="cDept" placeholder="مثل: الإدارة العامة للتعليم بالمنطقة"></label>
+          <label for="cFT">خط العنوان واسم الطالب<select id="cFT"></select></label>
+          <label for="cFB">خط النص<select id="cFB"></select></label>
+          <div class="fontprev" id="fontPrev"><span class="ft">شهادة تميّز</span><span class="fn">عبدالرحمن بن سليم المطيري</span><span class="fb">هذه الشهادة لتحقيقه المركز الأول على فصل أول متوسط 1 في الإنجاز على المنصة</span></div>
+          <div class="signers"><b style="font-size:14px">الموقّعون على الشهادة (من اليمين إلى اليسار)</b><div id="signerList" class="signers"></div><div class="row"><button class="btn small" type="button" id="addSigner">إضافة موقّع</button><span class="note">حتى أربعة موقّعين. اترك الاسم فارغاً إن كان التوقيع باليد.</span></div></div>
+          <div class="logoprev"><label class="btn" for="cLogo">شعار المدرسة (اختياري)</label><input type="file" id="cLogo" accept="image/*"><img id="cLogoImg" alt="الشعار" hidden><button class="btn ghost small" type="button" id="cLogoDel" hidden>إزالة</button></div>
+        </div>
+      </details>
+    </section>
+    <section class="panel" id="compHead" hidden aria-labelledby="chTitle">
+      <div class="phead"><h2 id="chTitle">نتائج المسابقة</h2><p id="chMeta"></p></div>
+      <p class="mode" id="chMode"></p>
+      <div class="grank" id="chGrades"></div>
+      <p class="note">الترتيب: نسبة الإنجاز الدقيقة خلال الفترة (المحلول ÷ المهام، وحدها الأعلى 100%). فإن تساوت: الأعلى في الإنجاز التراكمي منذ بداية الفصل الدراسي، ثم الأكثر حلاً للمهام في الفترة، ثم الأعلى في الاختبارات. من بقي متعادلاً بعد ذلك يتشارك المركز. ترتيب الصفوف للمعلومة فقط لأن عدد المهام يختلف بين الصفوف.</p>
+    </section>
+    <div id="compGrades" class="mod"></div>
+  </div>
+
   <footer class="no-print">
     <span>تبقى البيانات في هذا المتصفح على هذا الجهاز فقط، ولا تُرسل إلى أي خادم. إذا مسحت بيانات المتصفح أو فتحت الأداة من جهاز آخر فستحتاج إلى رفع الملفات من جديد، أو استعادة نسخة احتياطية.</span>
     <div class="row">
@@ -389,6 +519,8 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
   </footer>
 </div>
 <div class="toast" id="toast" hidden></div>
+<div id="certs" aria-hidden="true"></div>
+<div class="overlay" id="certView" hidden role="dialog" aria-modal="true" aria-label="معاينة الشهادة"><div class="ovbar"><button class="btn primary" type="button" id="certPrint">طباعة الشهادة</button><button class="btn" type="button" id="certClose">إغلاق</button></div><div class="ovbody"><div class="certscale" id="certScale"></div></div></div>
 
 <script>
 "use strict";
@@ -742,7 +874,7 @@ const DEF = () => ({ school: "", year: "", students: [], studentsAt: null, repor
 let state = DEF(), storageOk = true;
 function load() { try { const s = localStorage.getItem(KEY); if (s) state = Object.assign(DEF(), JSON.parse(s)); } catch (e) { storageOk = false; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); storageOk = true; } catch (e) { storageOk = false; toast("تعذّر الحفظ في المتصفح. ستبقى البيانات حتى تغلق الصفحة فقط."); } }
-let view = { module: "exc", tab: null, grade: null, cls: null, q: "", pf: "all", qP: "", pfP: "all", qF: "", pfF: "need" };
+let view = { sortP: "class", module: "exc", tab: null, grade: null, cls: null, q: "", pf: "all", qP: "", pfP: "all", qF: "", pfF: "need" };
 try { const v = JSON.parse(localStorage.getItem(VKEY) || "null"); if (v) { view.module = v.module || "exc"; view.tab = v.tab || null; } } catch (e) {}
 function saveView() { try { localStorage.setItem(VKEY, JSON.stringify({ module: view.module, tab: view.tab })); } catch (e) {} }
 
@@ -785,10 +917,10 @@ function groupedTable(ids, classes, o) {
     const gd = o.derive(sumRaw(cs));
     cs.sort((a, b) => (o.sortKey(b.d) - o.sortKey(a.d)) || (+a.cls - +b.cls) || a.cls.localeCompare(b.cls));
     if (!view.tab) { const h = document.createElement("tr"); h.className = "grp"; h.innerHTML = `<td colspan="${o.cols + 1}"><i style="background:${GC[gi % GC.length]}"></i>${esc(g)}</td>`; tb.append(h); }
-    cs.forEach((c) => {
+    cs.forEach((c, ci) => {
       const tr = document.createElement("tr");
       if (view.grade === c.grade && view.cls === c.cls) tr.className = "on";
-      tr.innerHTML = `<td><span class="chip"><i style="background:${GC[gi % GC.length]}"></i>${esc(shortGrade(c.grade))} / ${esc(c.cls)}</span></td>${o.cells(c.d, gd)}`;
+      tr.innerHTML = `<td>${o.rank ? `<span class="rk" title="ترتيب الفصل في صفه">${ci + 1}</span>` : ""}<span class="chip"><i style="background:${GC[gi % GC.length]}"></i>${esc(shortGrade(c.grade))} / ${esc(c.cls)}</span></td>${o.cells(c.d, gd)}`;
       tr.tabIndex = 0;
       const go = () => { if (view.grade === c.grade && view.cls === c.cls) view.grade = view.cls = null; else { view.grade = c.grade; view.cls = c.cls; } render(); if (view.grade) $(ids.scroll).scrollIntoView({ behavior: "smooth", block: "start" }); };
       tr.onclick = go; tr.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
@@ -931,6 +1063,7 @@ function platMatch(rep) {
   queue.forEach((x) => amb.push(x));
   return { bySid, unmatched, amb, ignored };
 }
+const exactP = (x) => x ? (x.t[0] ? 100 * x.t[1] / x.t[0] : 0) : -1;
 function platPfOptions(hasPrev, init) {
   const o = [["all", "الكل"], ["l0", "متابعة عاجلة (غير فعّال)"], ["l1", "منخفض"], ["l2", "متوسط"], ["l3", "متقدم"]];
   if (hasPrev) o.push(["stall", "لا إنجاز جديد هذا الأسبوع"]);
@@ -979,7 +1112,7 @@ function renderPlat() {
     head: `<th class="n">الطلاب</th><th>متوسط الإنجاز</th>${ppm ? `<th class="n">عن السابق</th>` : ""}<th class="n gc">الواجبات</th><th class="n">الأنشطة</th><th class="n">الاختبارات</th>` +
       LV.map((l, i) => `<th class="n${i === 0 ? " gc" : ""}" title="${lvRange(i)}"><i class="dot" style="background:${l.color}"></i>${l.name}</th>`).reverse().join("") +
       (showT ? `<th class="n gc">بلغوا المستهدف</th><th>نسبتهم</th>` : "") + (ppm ? `<th class="n gc">لا إنجاز جديد</th>` : ""),
-    cols: 9 + (ppm ? 2 : 0) + (showT ? 2 : 0), derive, sortKey: (d) => d.avg == null ? -1 : d.avg,
+    cols: 9 + (ppm ? 2 : 0) + (showT ? 2 : 0), derive, rank: true, sortKey: (d) => d.avg == null ? -1 : d.avg,
     cells: (d, parent) => `<td class="n">${d.m}${d.miss ? `<span class="np"> +${d.miss}</span>` : ""}</td><td>${bar(d.avg, parent && d.avg < parent.avg ? "low" : "")}</td>${ppm ? `<td class="n">${dl(d.avg, d.pavg, "%")}</td>` : ""}` +
       `<td class="n gc"><span class="frac">${fmt1(d.h)}%</span></td><td class="n"><span class="frac">${fmt1(d.a)}%</span></td><td class="n"><span class="frac">${fmt1(d.e)}%</span></td>` +
       [3, 2, 1, 0].map((i) => `<td class="n${i === 0 ? " gc" + (d.l[0] ? " hot" : "") : ""}">${d.l[i]}</td>`).join("") +
@@ -1005,7 +1138,10 @@ function renderPlat() {
   };
   const scopeN = state.students.filter(inTab).length;
   const list = state.students.filter((s) => inTab(s) && (!view.grade || (s.grade === view.grade && s.cls === view.cls)) && fit(s) && (!view.qP || norm(s.name).includes(nq) || (qd && s.sid.includes(qd))))
-    .sort((a, b) => order.indexOf(a.grade) - order.indexOf(b.grade) || (+a.cls - +b.cls) || (((pm.bySid.get(b.sid) || { p: -1 }).p) - ((pm.bySid.get(a.sid) || { p: -1 }).p)) || a.name.localeCompare(b.name, "ar"));
+    .sort(view.sortP === "rank"
+      ? (a, b) => (exactP(pm.bySid.get(b.sid)) - exactP(pm.bySid.get(a.sid))) || (((pm.bySid.get(b.sid) || { t: [0, -1] }).t[1]) - ((pm.bySid.get(a.sid) || { t: [0, -1] }).t[1])) || a.name.localeCompare(b.name, "ar")
+      : (a, b) => order.indexOf(a.grade) - order.indexOf(b.grade) || (+a.cls - +b.cls) || (exactP(pm.bySid.get(b.sid)) - exactP(pm.bySid.get(a.sid))) || a.name.localeCompare(b.name, "ar"));
+  $("pSort").value = view.sortP;
   $("pSThead").innerHTML = `<tr><th class="n">م</th><th>اسم الطالب</th><th>الفصل</th><th>الإنجاز</th><th>المستوى</th><th class="n">الواجبات</th><th class="n">الأنشطة</th><th class="n">الاختبارات</th>${ppm ? `<th class="n">هذا الأسبوع</th>` : ""}${init ? `<th class="n">المبادرة</th>` : ""}</tr>`;
   const sb = $("pSRows"); sb.textContent = ""; const frag = document.createDocumentFragment();
   const fr = (p) => p[0] ? `<span class="frac">${p[1]}/${p[0]}</span>` : `<span class="np">—</span>`;
@@ -1014,7 +1150,7 @@ function renderPlat() {
     if (!x) tr.innerHTML = `<td class="n">${i + 1}</td><td class="name"></td><td>${chip(s)}</td><td colspan="${5 + (ppm ? 1 : 0) + (init ? 1 : 0)}"><span class="tag miss">لم يظهر في المنصة بعد</span></td>`;
     else {
       const li = lvIdx(x.p), d = y ? x.t[1] - y.t[1] : null;
-      tr.innerHTML = `<td class="n">${i + 1}</td><td class="name"></td><td>${chip(s)}</td><td>${bar(x.p, li === 0 ? "red" : li === 1 ? "low" : li === 2 ? "blue" : "", true)}</td><td>${lvChip(li)}</td><td class="n">${fr(x.h)}</td><td class="n">${fr(x.a)}</td><td class="n">${fr(x.e)}</td>` +
+      tr.innerHTML = `<td class="n">${view.sortP === "rank" ? medal(i + 1) : i + 1}</td><td class="name"></td><td>${chip(s)}</td><td>${bar(view.sortP === "rank" ? exactP(x) : x.p, li === 0 ? "red" : li === 1 ? "low" : li === 2 ? "blue" : "", true)}</td><td>${lvChip(li)}</td><td class="n">${fr(x.h)}</td><td class="n">${fr(x.a)}</td><td class="n">${fr(x.e)}</td>` +
         (ppm ? `<td class="n">${y ? (d > 0 ? `<span class="delta up">+${d} مهمة</span>` : `<span class="tag stall">لا جديد</span>`) : `<span class="np">—</span>`}</td>` : "") +
         (init ? `<td class="n">${initScope(init, s) ? (x.p >= init.target ? `<span class="star">بلغ</span>` : `<span class="np">${fmt1(init.target - x.p)} للمستهدف</span>`) : `<span class="np">—</span>`}</td>` : "");
     }
@@ -1174,6 +1310,257 @@ function renderFollow() {
   $("printhead").textContent = (state.school ? state.school + " · " : "") + "متابعة الطلاب" + (view.tab ? " · " + view.tab : "") + " · " + $("fMeta").textContent;
 }
 
+
+/* ================= المسابقة الشهرية ================= */
+const ORDW = ["الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس", "السابع", "الثامن", "التاسع", "العاشر", "الحادي عشر", "الثاني عشر", "الثالث عشر", "الرابع عشر", "الخامس عشر"];
+const ordinal = (n) => ORDW[n - 1] || String(n);
+const CDEF = () => ({ month: null, base: null, end: null, top: 3, honor: 5, elig: "half", fixed: 20, label: "", school: "", dept: "", logo: null, fTitle: "Reem Kufi", fBody: "Tajawal", signers: null });
+const C = () => {
+  if (!state.comp || typeof state.comp !== "object") state.comp = {};
+  const c = state.comp, d = CDEF(); for (const k in d) if (!(k in c)) c[k] = d[k];
+  if (!Array.isArray(c.signers)) {
+    c.signers = [{ t: c.s1t && c.s1t !== "الموجه الطلابي" ? c.s1t : "مسؤول المنصة", n: c.s1n || "" }, { t: c.s2t || "مدير المدرسة", n: c.s2n || "" }];
+    delete c.s1t; delete c.s1n; delete c.s2t; delete c.s2n;
+  }
+  return c;
+};
+const FONTS_T = [["Reem Kufi", "ريم كوفي — كوفي حديث", "wght@400;700"], ["El Messiri", "المسيري — أنيق", "wght@400;700"], ["Aref Ruqaa", "عارف رقعة — رقعة", "wght@400;700"], ["Amiri", "أميري — نسخ كلاسيكي", "wght@400;700"], ["Mirza", "ميرزا — زخرفي هادئ", "wght@400;700"], ["Rakkas", "رقّاص — عريض زخرفي", ""], ["Lalezar", "لاله‌زار — عريض", ""], ["Noto Kufi Arabic", "نوتو كوفي — رسمي", "wght@400;700"]];
+const FONTS_B = [["Tajawal", "تجوّل — حديث واضح", "wght@400;700"], ["Almarai", "المراعي — رسمي", "wght@400;700"], ["Cairo", "القاهرة — حديث", "wght@400;700"], ["Noto Naskh Arabic", "نوتو نسخ — كتب", "wght@400;700"], ["Amiri", "أميري — نسخ كلاسيكي", "wght@400;700"], ["El Messiri", "المسيري — أنيق", "wght@400;700"]];
+const fontsLoaded = new Set();
+function ensureFont(fam) {
+  if (!fam || fontsLoaded.has(fam)) return;
+  const f = FONTS_T.concat(FONTS_B).find((x) => x[0] === fam); if (!f) return;
+  fontsLoaded.add(fam);
+  const l = document.createElement("link"); l.rel = "stylesheet";
+  l.href = "https://fonts.googleapis.com/css2?family=" + fam.replace(/ /g, "+") + (f[2] ? ":" + f[2] : "") + "&display=swap";
+  document.head.append(l);
+}
+async function fontsReady() {
+  const c = C(); ensureFont(c.fTitle); ensureFont(c.fBody);
+  try { await Promise.race([Promise.all([document.fonts.load(`700 30px "${c.fTitle}"`, "شهادة"), document.fonts.load(`400 18px "${c.fBody}"`, "شهادة"), document.fonts.load(`700 18px "${c.fBody}"`, "شهادة")]), new Promise((r) => setTimeout(r, 4000))]); } catch (e) {}
+}
+function renderCertSettings() {
+  const c = C();
+  const fill = (id, list, v) => { const el = $(id); if (!el.options.length) el.innerHTML = list.map((f) => `<option value="${f[0]}">${f[1]}</option>`).join(""); el.value = v; };
+  fill("cFT", FONTS_T, c.fTitle); fill("cFB", FONTS_B, c.fBody);
+  ensureFont(c.fTitle); ensureFont(c.fBody);
+  const pv = $("fontPrev"); pv.querySelector(".ft").style.fontFamily = pv.querySelector(".fn").style.fontFamily = `"${c.fTitle}", serif`; pv.querySelector(".fb").style.fontFamily = `"${c.fBody}", serif`;
+  pv.querySelector(".ft").style.fontWeight = pv.querySelector(".fn").style.fontWeight = "700";
+  const box = $("signerList");
+  if (box.contains(document.activeElement)) return;
+  box.innerHTML = "";
+  c.signers.forEach((sg, i) => {
+    const row = document.createElement("div"); row.className = "signer";
+    row.innerHTML = `<span class="num">${i + 1}</span><input type="text" aria-label="صفة الموقّع ${i + 1}" placeholder="الصفة، مثل: مسؤول المنصة"><input type="text" aria-label="اسم الموقّع ${i + 1}" placeholder="الاسم (اختياري)">`;
+    const [t, n] = row.querySelectorAll("input"); t.value = sg.t; n.value = sg.n;
+    t.onchange = () => { sg.t = S(t.value); save(); };
+    n.onchange = () => { sg.n = S(n.value); save(); };
+    if (c.signers.length > 1) { const del = document.createElement("button"); del.type = "button"; del.className = "btn ghost small"; del.textContent = "حذف"; del.onclick = () => { c.signers.splice(i, 1); save(); renderCertSettings(); }; row.append(del); }
+    box.append(row);
+  });
+  $("addSigner").disabled = c.signers.length >= 4;
+}
+const monthKey = (iso) => String(iso).slice(0, 7);
+const monthLabel = (k) => { try { return "شهر " + new Date(k + "-15T12:00:00").toLocaleDateString("ar-SA-u-ca-gregory-nu-latn", { month: "long", year: "numeric" }) + "م"; } catch (e) { return k; } };
+const hijriToday = () => { try { return new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-latn", { day: "numeric", month: "long", year: "numeric" }).format(new Date()); } catch (e) { return gDate(new Date().toISOString()); } };
+function compMonths() { return Array.from(new Set(platSorted().map((r) => monthKey(r.at)))).sort(); }
+function applyMonth(k) {
+  const c = C(), list = platSorted(), inM = list.filter((r) => monthKey(r.at) === k), before = list.filter((r) => r.at < k + "-01");
+  if (!inM.length) return;
+  c.month = k; c.end = inM[inM.length - 1].id; c.base = before.length ? before[before.length - 1].id : "none"; c.label = monthLabel(k);
+}
+function compReports() {
+  const c = C(), list = platSorted(); if (!list.length) return null;
+  if (!c.end || !list.some((r) => r.id === c.end)) applyMonth(monthKey(list[list.length - 1].at));
+  const end = list.find((r) => r.id === c.end) || list[list.length - 1];
+  let base = c.base && c.base !== "none" ? list.find((r) => r.id === c.base) || null : null;
+  if (base && base.at >= end.at) base = null;
+  return { end, base };
+}
+const median = (a) => { if (!a.length) return 0; const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const cmpRows = (a, b) => b.rate - a.rate || b.cum - a.cum || b.solved - a.solved || b.exRate - a.exRate || a.s.name.localeCompare(b.s.name, "ar");
+const sameRank = (a, b) => a.rate === b.rate && a.cum === b.cum && a.solved === b.solved && a.exRate === b.exRate;
+function rankList(rows, top) {
+  const out = []; let rank = 0;
+  rows.forEach((r, i) => { if (i === 0 || !sameRank(rows[i - 1], r)) rank = i + 1; if (rank <= top) out.push(Object.assign({}, r, { rank })); });
+  return out;
+}
+function compData() {
+  const rp = compReports(); if (!rp) return null;
+  const c = C(), em = platMatch(rp.end), bm = rp.base ? platMatch(rp.base) : null, order = gradeOrder();
+  const rows = [];
+  state.students.forEach((s) => {
+    const x = em.bySid.get(s.sid); if (!x) return;
+    const y = bm ? bm.bySid.get(s.sid) : null, d = (k, i) => x[k][i] - (y ? y[k][i] : 0);
+    const tasks = d("t", 0), solved = Math.max(0, d("t", 1)), exT = d("e", 0), exS = Math.max(0, d("e", 1));
+    rows.push({ s, tasks, solved, rate: tasks > 0 ? Math.min(100, 100 * solved / tasks) : 0, exRate: exT > 0 ? Math.min(100, 100 * exS / exT) : 0, cum: x.t[0] ? 100 * x.t[1] / x.t[0] : 0 });
+  });
+  const byClass = new Map();
+  rows.forEach((r) => { const k = r.s.grade + "|" + r.s.cls; (byClass.get(k) || byClass.set(k, []).get(k)).push(r); });
+  byClass.forEach((list) => {
+    const med = median(list.filter((r) => r.tasks > 0).map((r) => r.tasks));
+    const min = c.elig === "half" ? Math.max(1, Math.ceil(med / 2)) : c.elig === "fixed" ? Math.max(1, +c.fixed || 1) : 1;
+    list.forEach((r) => { r.min = min; r.eligible = r.tasks > 0 && r.tasks >= min; });
+  });
+  const grades = order.map((g) => {
+    const gr = rows.filter((r) => r.s.grade === g);
+    const classes = Array.from(new Set(state.students.filter((s) => s.grade === g).map((s) => s.cls))).map((cls) => {
+      const cr = gr.filter((r) => r.s.cls === cls), act = cr.filter((r) => r.tasks > 0);
+      const avg = act.length ? act.reduce((a, r) => a + r.rate, 0) / act.length : 0;
+      const inactive = act.filter((r) => r.rate < levels()[0]).length;
+      const winners = rankList(cr.filter((r) => r.eligible).sort(cmpRows), c.top);
+      return { cls, n: cr.length, act: act.length, avg, inactive, winners, inelig: cr.filter((r) => !r.eligible) };
+    }).sort((a, b) => b.avg - a.avg || a.inactive - b.inactive || (+a.cls - +b.cls));
+    let rk = 0; classes.forEach((cl, i) => { if (i === 0 || classes[i - 1].avg !== cl.avg || classes[i - 1].inactive !== cl.inactive) rk = i + 1; cl.rank = rk; });
+    const act = gr.filter((r) => r.tasks > 0);
+    return { g, gi: order.indexOf(g), classes, honor: rankList(gr.filter((r) => r.eligible).sort(cmpRows), c.honor), avg: act.length ? act.reduce((a, r) => a + r.rate, 0) / act.length : 0, inelig: gr.filter((r) => !r.eligible) };
+  });
+  const gs = grades.slice().sort((a, b) => b.avg - a.avg); gs.forEach((g, i) => g.grank = i + 1);
+  return { rp, rows, grades, matched: em.bySid.size, needLink: em.amb.length };
+}
+const medal = (r) => `<span class="medal ${r <= 3 ? "m" + r : "mx"}">${r}</span>`;
+let compCache = null;
+function renderComp() {
+  const c = C(), list = platSorted();
+  $("compEmpty").hidden = !!list.length; ["compSet", "compHead"].forEach((id) => $(id).hidden = !list.length);
+  if (!list.length) { $("compGrades").innerHTML = ""; return; }
+  const D = compData(); compCache = D;
+  // settings
+  const months = compMonths();
+  $("cMonth").innerHTML = months.map((k) => `<option value="${k}">${esc(monthLabel(k))}</option>`).join("") + (c.month && !months.includes(c.month) ? "" : "");
+  $("cMonth").value = c.month || months[months.length - 1];
+  const opt = (r) => `<option value="${r.id}">${esc(gDate(r.at))}</option>`;
+  $("cBase").innerHTML = `<option value="none">بدون — ترتيب تراكمي من بداية الفصل الدراسي</option>` + list.filter((r) => r.at < D.rp.end.at).map(opt).join("");
+  $("cBase").value = D.rp.base ? D.rp.base.id : "none";
+  $("cEnd").innerHTML = list.map(opt).join(""); $("cEnd").value = D.rp.end.id;
+  const setv = (id, v) => { const el = $(id); if (document.activeElement !== el) el.value = v; };
+  setv("cTop", c.top); setv("cHonor", c.honor); $("cElig").value = c.elig; setv("cFixed", c.fixed); $("cFixedWrap").hidden = c.elig !== "fixed";
+  setv("cLabel", c.label); setv("cSchool", c.school || state.school); setv("cDept", c.dept); renderCertSettings();
+  $("cLogoImg").hidden = $("cLogoDel").hidden = !c.logo; if (c.logo) $("cLogoImg").src = c.logo;
+  // head
+  $("chTitle").textContent = "نتائج المسابقة · " + (c.label || monthLabel(monthKey(D.rp.end.at)));
+  $("chMeta").textContent = view.tab ? shortGrade(view.tab) : "كل الصفوف";
+  const md = $("chMode");
+  if (D.rp.base) { md.className = "mode"; md.textContent = `حساب شهري: ما أنجزه كل طالب بين تقرير ${gDate(D.rp.base.at)} وتقرير ${gDate(D.rp.end.at)}.`; }
+  else { md.className = "mode cum"; md.textContent = `ترتيب تراكمي من بداية الفصل الدراسي حتى تقرير ${gDate(D.rp.end.at)}، لأنه لا يوجد تقرير قبل بداية الشهر. لتصبح المسابقة شهرية، ارفع تقرير المنصة في أول كل شهر.`; }
+  if (D.needLink) md.textContent += ` تنبيه: ${D.needLink} سجل في المنصة يحتاج ربطاً يدوياً من قسم «المنصة» ولن يدخل الترتيب قبل ربطه.`;
+  $("chGrades").innerHTML = view.tab || D.grades.length < 2 ? "" : D.grades.slice().sort((a, b) => a.grank - b.grank).map((g) => `<div>${medal(g.grank)} ${esc(shortGrade(g.g))} <b>${fmt1(g.avg)}%</b></div>`).join("");
+  $("chGrades").hidden = !$("chGrades").innerHTML;
+  // per grade
+  const box = $("compGrades"); box.innerHTML = "";
+  D.grades.filter((g) => !view.tab || g.g === view.tab).forEach((g) => {
+    const sec = document.createElement("section"); sec.className = "panel gcomp";
+    const rate = (r) => `<span class="frac">${fmt1(r.rate)}%</span>`;
+    const certB = (r, kind) => `<button type="button" class="certbtn no-print" data-cert="${esc(r.s.sid)}" data-kind="${kind}" data-rank="${r.rank}">شهادة</button>`;
+    sec.innerHTML = `
+      <div class="phead"><h2>${esc(g.g)}</h2>
+        <div class="row no-print">
+          <button class="btn small" type="button" data-batch="classes" data-grade="${esc(g.g)}">طباعة شهادات أوائل الفصول</button>
+          <button class="btn small" type="button" data-batch="honor" data-grade="${esc(g.g)}">طباعة شهادات لوحة الشرف</button>
+        </div></div>
+      <h3>ترتيب الفصول</h3>
+      <div class="tbox"><table class="stable"><thead><tr><th class="n">الترتيب</th><th>الفصل</th><th>متوسط الإنجاز</th><th class="n">الطلاب</th><th class="n">غير فعّال</th></tr></thead><tbody>
+        ${g.classes.map((cl) => `<tr><td class="n">${medal(cl.rank)}</td><td><span class="chip"><i style="background:${GC[g.gi % GC.length]}"></i>${esc(shortGrade(g.g))} / ${esc(cl.cls)}</span></td><td>${bar(cl.avg, "", true)}</td><td class="n">${cl.act}</td><td class="n${cl.inactive ? " hot" : ""}">${cl.inactive}</td></tr>`).join("")}
+      </tbody></table></div>
+      <h3>لوحة الشرف · أوائل ${esc(shortGrade(g.g))}</h3>
+      ${g.honor.length ? `<div class="tbox"><table class="stable"><thead><tr><th class="n">المركز</th><th>اسم الطالب</th><th>الفصل</th><th class="n">نسبة الإنجاز</th><th class="n">المحلول من المهام</th><th class="no-print"></th></tr></thead><tbody>
+        ${g.honor.map((r) => `<tr><td class="n">${medal(r.rank)}</td><td class="name">${esc(r.s.name)}</td><td>${chip(r.s)}</td><td class="n">${rate(r)}</td><td class="n"><span class="frac">${r.solved}/${r.tasks}</span></td><td class="no-print">${certB(r, "honor")}</td></tr>`).join("")}
+      </tbody></table></div>` : `<p class="note">لا يوجد طلاب مؤهلون في هذه الفترة.</p>`}
+      <h3>أوائل الفصول</h3>
+      <div class="ctop">${g.classes.slice().sort((a, b) => (+a.cls - +b.cls) || a.cls.localeCompare(b.cls)).map((cl) => `
+        <div class="ccard"><div class="chead"><span class="chip"><i style="background:${GC[g.gi % GC.length]}"></i>${esc(shortGrade(g.g))} / ${esc(cl.cls)}</span><span class="avg">ترتيب الفصل ${cl.rank} · متوسطه ${fmt1(cl.avg)}%</span></div>
+          ${cl.winners.length ? cl.winners.map((r) => `<div class="wrow">${medal(r.rank)}<span class="wn">${esc(r.s.name)}<span class="ws">${r.solved} من ${r.tasks} مهمة</span></span><span class="wr">${fmt1(r.rate)}%</span>${certB(r, "class")}</div>`).join("") : `<p class="note">لا يوجد مؤهلون.</p>`}
+        </div>`).join("")}</div>
+      ${g.inelig.length ? `<details class="msg warn no-print"><summary>${g.inelig.length} طالب غير مؤهل في هذه الفترة</summary><ul>${g.inelig.map((r) => `<li>${esc(r.s.name)} — ${esc(shortGrade(r.s.grade))} / ${esc(r.s.cls)}: ${r.tasks <= 0 ? "لا مهام في الفترة" : `أمامه ${r.tasks} مهمة والحد الأدنى ${r.min}`}</li>`).join("")}</ul></details>` : ""}`;
+    box.append(sec);
+  });
+  $("printhead").textContent = (state.school ? state.school + " · " : "") + "نتائج المسابقة · " + (c.label || "") + (view.tab ? " · " + view.tab : "");
+}
+function findWinner(sid, kind) {
+  const D = compCache; if (!D) return null;
+  for (const g of D.grades) {
+    if (kind === "honor") { const r = g.honor.find((x) => x.s.sid === sid); if (r) return { r, g, kind }; }
+    else for (const cl of g.classes) { const r = cl.winners.find((x) => x.s.sid === sid); if (r) return { r, g, kind }; }
+  }
+  return null;
+}
+/* ---- certificate ---- */
+const STAR = (fill, stroke) => `<svg viewBox="0 0 100 100" aria-hidden="true"><g fill="${fill}" stroke="${stroke}" stroke-width="2.4"><rect x="21" y="21" width="58" height="58"/><rect x="21" y="21" width="58" height="58" transform="rotate(45 50 50)"/></g><circle cx="50" cy="50" r="13" fill="none" stroke="${stroke}" stroke-width="2.4"/><circle cx="50" cy="50" r="5" fill="${stroke}"/></svg>`;
+const PAT = "url(\"data:image/svg+xml," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><g fill='none' stroke='#14533f' stroke-width='1.2'><rect x='17' y='17' width='26' height='26'/><rect x='17' y='17' width='26' height='26' transform='rotate(45 30 30)'/><path d='M0 30h8M52 30h8M30 0v8M30 52v8'/></g></svg>`) + "\")";
+const SEAL = `<svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#b08a3e">${Array.from({ length: 16 }, (_, i) => `<path d="M50 0 L55 12 L45 12 Z" transform="rotate(${i * 22.5} 50 50)"/>`).join("")}</g><circle cx="50" cy="50" r="41" fill="none" stroke="#b08a3e" stroke-width="1.6"/></svg>`;
+function certHTML(w) {
+  const c = C(), s = w.r.s, school = c.school || state.school || "المدرسة";
+  const where = w.kind === "honor" ? `على مستوى <b>الصف ${esc(w.g.g)}</b>` : `على <b>فصل ${esc(shortGrade(s.grade))} ${esc(s.cls)}</b>`;
+  const rateTxt = (Math.round(w.r.rate * 10) / 10) % 1 === 0 ? String(Math.round(w.r.rate)) : fmt1(w.r.rate);
+  const period = c.label || "";
+  const sg = (c.signers || []).filter((x) => x.t || x.n);
+  return `<div class="cert" style="--ct:'${c.fTitle}';--cb:'${c.fBody}'">
+    <div class="pat" style="background-image:${PAT}"></div>
+    <div class="frame"></div>
+    <div class="corner tr">${STAR("#fff", "#b08a3e")}</div><div class="corner tl">${STAR("#fff", "#b08a3e")}</div><div class="corner br">${STAR("#fff", "#b08a3e")}</div><div class="corner bl">${STAR("#fff", "#b08a3e")}</div>
+    <div class="seal g${w.r.rank <= 3 ? w.r.rank : 0}">${SEAL}<div class="disc"><small>المركز</small><span>${ordinal(w.r.rank)}</span></div></div>
+    <div class="inner">
+      <div class="top">
+        <div class="r">المملكة العربية السعودية<br>وزارة التعليم${c.dept ? "<br>" + esc(c.dept) : ""}<br>${esc(school)}</div>
+        <div>${c.logo ? `<img src="${c.logo}" alt="">` : ""}</div>
+        <div class="l">${state.year ? "العام الدراسي<br>" + esc(state.year) : ""}</div>
+      </div>
+      <div class="title">شهادة تميّز</div>
+      <div class="title-sub">الإنجاز في المنصة التعليمية</div>
+      <div class="lead">يسرّ إدارة ${esc(school)} أن تمنح الطالب</div>
+      <div class="name">${esc(s.name)}</div>
+      <div class="body">هذه الشهادة لتحقيقه <b>المركز ${ordinal(w.r.rank)}</b> ${where}<br>في الإنجاز على المنصة${period ? " خلال " + esc(period) : ""} بنسبة إنجاز بلغت <span class="pct">${rateTxt}%</span></div>
+      <div class="wish">سائلين الله له دوام التوفيق والتميّز</div>
+      <div class="date">حُررت في ${esc(hijriToday())}</div>
+      <div class="sigs">${sg.map((x) => `<div class="sig"><span class="t">${esc(x.t)}</span><span class="line"></span><span class="n">${esc(x.n)}</span></div>`).join("")}</div>
+    </div>
+  </div>`;
+}
+function printCerts(ws) {
+  if (!ws.length) { toast("لا يوجد فائزون لطباعة شهاداتهم."); return; }
+  $("certs").innerHTML = ws.map(certHTML).join("");
+  document.body.dataset.print = "certs";
+  const done = () => { delete document.body.dataset.print; };
+  window.addEventListener("afterprint", done, { once: true });
+  fontsReady().then(() => { window.print(); setTimeout(done, 1000); });
+}
+function showCert(w) {
+  const ov = $("certView"); $("certScale").innerHTML = certHTML(w); ov.hidden = false;
+  const fit = () => { const el = $("certScale"), wpx = el.firstElementChild.offsetWidth, hpx = el.firstElementChild.offsetHeight, sc = Math.min(1, (window.innerWidth - 32) / wpx); el.style.transform = `scale(${sc})`; el.style.width = wpx + "px"; el.style.height = hpx * sc + "px"; el.style.marginBottom = -(hpx - hpx * sc) + "px"; };
+  fit(); window.onresize = fit; fontsReady().then(fit);
+  $("certPrint").onclick = () => { ov.hidden = true; printCerts([w]); };
+  $("certPrint").focus();
+}
+$("certClose").onclick = () => { $("certView").hidden = true; };
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("certView").hidden) $("certView").hidden = true; });
+$("compGrades").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.cert) { const w = findWinner(b.dataset.cert, b.dataset.kind); if (w) showCert(w); }
+  else if (b.dataset.batch) {
+    const g = (compCache.grades || []).find((x) => x.g === b.dataset.grade); if (!g) return;
+    const ws = b.dataset.batch === "honor" ? g.honor.map((r) => ({ r, g, kind: "honor" })) : g.classes.slice().sort((a, b) => (+a.cls - +b.cls)).flatMap((cl) => cl.winners.map((r) => ({ r, g, kind: "class" })));
+    printCerts(ws);
+  }
+});
+/* settings events */
+$("cMonth").addEventListener("change", (e) => { applyMonth(e.target.value); save(); render(); });
+$("cBase").addEventListener("change", (e) => { C().base = e.target.value; save(); render(); });
+$("cEnd").addEventListener("change", (e) => { C().end = e.target.value; save(); render(); });
+[["cTop", "top", 1, 20], ["cHonor", "honor", 1, 30], ["cFixed", "fixed", 1, 999]].forEach(([id, k, lo, hi]) => $(id).addEventListener("change", (e) => { const v = Math.round(+e.target.value); if (!(v >= lo && v <= hi)) { e.target.value = C()[k]; return; } C()[k] = v; save(); render(); }));
+$("cElig").addEventListener("change", (e) => { C().elig = e.target.value; save(); render(); });
+$("addSigner").onclick = () => { const c = C(); if (c.signers.length >= 4) return; c.signers.splice(Math.max(0, c.signers.length - 1), 0, { t: "", n: "" }); save(); renderCertSettings(); const ins = $("signerList").querySelectorAll(".signer input[aria-label^='صفة']"); const el = ins[Math.max(0, c.signers.length - 2)]; if (el) el.focus(); };
+$("cFT").addEventListener("change", (e) => { C().fTitle = e.target.value; save(); renderCertSettings(); });
+$("cFB").addEventListener("change", (e) => { C().fBody = e.target.value; save(); renderCertSettings(); });
+[["cLabel", "label"], ["cSchool", "school"], ["cDept", "dept"]].forEach(([id, k]) => $(id).addEventListener("change", (e) => { C()[k] = S(e.target.value); save(); render(); }));
+$("cLogo").addEventListener("change", (e) => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  const img = new Image(), url = URL.createObjectURL(f);
+  img.onload = () => { const sc = Math.min(1, 320 / Math.max(img.width, img.height)), cv = document.createElement("canvas"); cv.width = Math.round(img.width * sc); cv.height = Math.round(img.height * sc); cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height); C().logo = cv.toDataURL("image/png"); URL.revokeObjectURL(url); save(); render(); toast("أُضيف الشعار إلى الشهادة"); };
+  img.onerror = () => { URL.revokeObjectURL(url); toast("تعذّرت قراءة الصورة."); };
+  img.src = url;
+});
+$("cLogoDel").onclick = () => { C().logo = null; save(); render(); };
+
 /* ================= Shared rendering ================= */
 function renderHistory(boxId, panelId, list, curId, metaFn, onView, onDelete) {
   const box = $(boxId); list = list.slice().reverse();
@@ -1207,7 +1594,7 @@ function render() {
   }
   $("delStudents").hidden = !hasS;
   // step 2 cards
-  $("step2").hidden = M !== "exc"; $("stepP").hidden = M !== "plat"; $("stepF").hidden = M !== "follow";
+  $("step2").hidden = M !== "exc"; $("stepP").hidden = !(M === "plat" || M === "comp"); $("stepF").hidden = M !== "follow";
   const er = curExc(), pr = curPlat();
   $("step2").classList.toggle("off", !hasS); $("f2").disabled = !hasS; $("step2").classList.toggle("done", !!er);
   if (er) { $("s2text").innerHTML = `<span class="state">الكشف المعروض: ${esc(periodText(er))} · <b>${er.records}</b> سجلاً</span>`; $("f2label").textContent = "رفع كشف أحدث"; }
@@ -1231,13 +1618,13 @@ function render() {
     tabs.append(b);
   });
   $("welcome").hidden = hasS;
-  $("modExc").hidden = !hasS || M !== "exc"; $("modPlat").hidden = !hasS || M !== "plat"; $("modFollow").hidden = !hasS || M !== "follow";
+  $("modExc").hidden = !hasS || M !== "exc"; $("modPlat").hidden = !hasS || M !== "plat"; $("modFollow").hidden = !hasS || M !== "follow"; $("modComp").hidden = !hasS || M !== "comp";
   $("printhead").textContent = "";
   // follow-up count badge
   if (hasS && (er || pr)) { const F = followData(); const n = state.students.filter((s) => F.reasons(s).length).length; $("followCnt").textContent = n; $("followCnt").hidden = !n; } else $("followCnt").hidden = true;
   if (!hasS) { $("topActions").hidden = true; return; }
-  if (M === "exc") renderExc(); else if (M === "plat") renderPlat(); else renderFollow();
-  $("topActions").hidden = !(M === "exc" ? er : M === "plat" ? pr : (er || pr));
+  if (M === "exc") renderExc(); else if (M === "plat") renderPlat(); else if (M === "comp") renderComp(); else renderFollow();
+  $("topActions").hidden = !(M === "exc" ? er : M === "plat" ? pr : M === "comp" ? state.plat.length : (er || pr));
 }
 
 /* ================= Uploads ================= */
@@ -1311,6 +1698,7 @@ $("q").addEventListener("input", (e) => { view.q = e.target.value; render(); });
 $("pQ").addEventListener("input", (e) => { view.qP = e.target.value; render(); });
 $("fQ").addEventListener("input", (e) => { view.qF = e.target.value; render(); });
 $("pF").addEventListener("change", (e) => { view.pfP = e.target.value; render(); });
+$("pSort").addEventListener("change", (e) => { view.sortP = e.target.value; render(); });
 $("fF").addEventListener("change", (e) => { view.pfF = e.target.value; render(); });
 document.querySelectorAll("#pf button").forEach((b) => b.onclick = () => { view.pf = b.dataset.v; syncSeg(); render(); });
 $("goal").addEventListener("change", (e) => { const v = Math.round(+e.target.value); if (!(v > 0)) { e.target.value = goal(); return; } state.goal = v; save(); render(); });
@@ -1380,6 +1768,19 @@ $("csvBtn").onclick = () => {
       L.push(line([i + 1, s.sid, s.name, s.grade, s.cls, x.p, LV[lvIdx(x.p)].name, fr(x.h), fr(x.a), fr(x.e)].concat(ppm ? [y ? (x.t[1] > y.t[1] ? "+" + (x.t[1] - y.t[1]) + " مهمة" : "لا جديد") : ""] : []).concat(init ? [initScope(init, s) ? (x.p >= init.target ? "بلغ" : "لم يبلغ") : ""] : [])));
     });
     download("platform-" + tag + ".csv", "﻿" + L.join("\r\n"), "text/csv;charset=utf-8");
+  } else if (view.module === "comp") {
+    const D = compData(); if (!D) return; const c = C();
+    L.push(line([state.school, "نتائج المسابقة" + (view.tab ? " - " + view.tab : ""), c.label, D.rp.base ? "شهري من " + gDate(D.rp.base.at) + " إلى " + gDate(D.rp.end.at) : "تراكمي حتى " + gDate(D.rp.end.at)]), "");
+    D.grades.filter((g) => !view.tab || g.g === view.tab).forEach((g) => {
+      L.push(line([g.g]), line(["ترتيب الفصول", "الفصل", "متوسط الإنجاز %", "الطلاب", "غير فعّال"]));
+      g.classes.forEach((cl) => L.push(line([cl.rank, cl.cls, fmt1(cl.avg), cl.act, cl.inactive])));
+      L.push("", line(["لوحة الشرف - المركز", "اسم الطالب", "الفصل", "نسبة الإنجاز %", "المحلول", "المهام"]));
+      g.honor.forEach((r) => L.push(line([r.rank, r.s.name, r.s.cls, fmt1(r.rate), r.solved, r.tasks])));
+      L.push("", line(["أوائل الفصول - الفصل", "المركز", "اسم الطالب", "نسبة الإنجاز %", "المحلول", "المهام"]));
+      g.classes.slice().sort((a, b) => +a.cls - +b.cls).forEach((cl) => cl.winners.forEach((r) => L.push(line([cl.cls, r.rank, r.s.name, fmt1(r.rate), r.solved, r.tasks]))));
+      L.push("");
+    });
+    download("competition-" + tag + ".csv", "\ufeff" + L.join("\r\n"), "text/csv;charset=utf-8");
   } else {
     const F = followData(); if (!F.er && !F.pr) return;
     L.push(line([state.school, "متابعة الطلاب" + (view.tab ? " - " + view.tab : ""), $("fMeta").textContent]), "", line(["م", "رقم الطالب", "اسم الطالب", "الصف", "الفصل", "السلوك المتميز", "الإنجاز في المنصة %", "المستوى", "أسباب المتابعة"]));
